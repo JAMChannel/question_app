@@ -37,7 +37,6 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :amazon
-  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
@@ -117,5 +116,5 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  
+
 end
