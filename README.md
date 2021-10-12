@@ -71,3 +71,4 @@ has_one_attached :image
 |（管理画面）質問を削除する | DELETE | /admin/questions/:id | admin/questions#destroy |
 |（管理画面）ユーザー一覧ページを表示する | GET | /admin/users | admin/users#index |
 |（管理画面）ユーザーを削除する| DELETE | /admin /users/:id| admin/users#destroy |
+
