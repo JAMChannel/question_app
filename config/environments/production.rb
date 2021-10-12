@@ -39,7 +39,7 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'jam-question-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'https://jam-question-app.herokuapp.com/' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :user_name      => ENV['SENDGRID_USERNAME'],
