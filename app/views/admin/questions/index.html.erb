@@ -7,17 +7,6 @@
   </div>
   <div class="mainber">
     <div class="main-each">
-
-      <div class="post-form">
-        <form class="form-inline">
-          <div class="form-group mx-sm-3 mb-2">
-            <label for="inputPassword2" class="sr-only">Password</label>
-            <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary mb-2">検索</button>
-        </form>
-      </div>
-
       <% @questions.each do |question| %>
         <div class="user-box">
           <div class="user-box-item">
@@ -38,7 +27,6 @@
       <% end %>
       <%= paginate(@questions) %>
     </div>
- 
   </div>
 </div>
 

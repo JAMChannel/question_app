@@ -10,4 +10,3 @@ class Admin::QuestionsController < ApplicationController
     redirect_to admin_questions_path
   end
 end
-.

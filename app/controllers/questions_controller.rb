@@ -1,13 +1,13 @@
 class QuestionsController < ApplicationController
   before_action :search_product, only: [:index, :unsolved, :solved]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :unsolved, :solved]
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
   def index
     @questions = Question.includes(:user).order("created_at DESC")
     @questions = @q.result.page(params[:page]).per(4)
     respond_to do |format|
       format.html
       format.js
-      # binding.pry
     end
   end
 
@@ -17,8 +17,10 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @user = User.where.not(id: current_user.id)
     if @question.valid?
       @question.save
+      CommentMailer.question_email(@question, @user).deliver_now
       redirect_to root_path
     else
       render 'new'
@@ -26,24 +28,21 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
     @comment = Comment.new
     @comments = @question.comments.includes(:user)
     # binding.pry
   end
 
   def edit
-    @question = Question.find(params[:id])
+    
   end
 
   def update
-    @question = Question.find(params[:id])
     @question.update(question_params)
     redirect_to question_path(@question)
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     redirect_to root_path
   end
@@ -54,7 +53,6 @@ class QuestionsController < ApplicationController
 
   def solved
     @questions = Question.where(solved: true).page(params[:page]).per(4)
-
   end
 
 
@@ -66,6 +64,10 @@ class QuestionsController < ApplicationController
 
   def search_product
     @q = Question.ransack(params[:q])
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 
   def move_to_index

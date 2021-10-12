@@ -19,17 +19,17 @@
     <% if logged_in? %>
       <%= form_with(model: [@question, @comment], local: true) do |f| %>
         <%= f.text_area :text, placeholder: "コメントする", rows: "2" ,class: "form-content" %><br>
-        <%= f.submit "回答する", class: "btn btn-primary" %>
+        <% if @question.solved %>
+           <%= link_to '解決済み', question_path(@question.id, question: {solved: false}), method: :put %>
+        <% else %>
+          <%= f.submit "回答する", class: "btn btn-primary" %>
+          <%= link_to '質問を解決したい場合はクリック', question_path(@question.id, question: {solved: true}), method: :put %>
+        <% end %>
       <% end %>
       <% else %>
       <strong><p>※※※ 投稿には新規登録/ログインが必要です ※※※</p></strong>
     <% end %>
   </div>
-  <% if @question.solved %>
-    <%= link_to '解決済み', question_path(@question.id, question: {solved: false}), method: :put %>
-  <% else %>
-    <%= link_to '質問受付中or再質問', question_path(@question.id, question: {solved: true}), method: :put %>
-  <% end %>
 
   <% @comments.each do |comment| %>
   <%# binding.irb %>
@@ -47,9 +47,4 @@
       </div>
     </div>
   <% end %>
-
-
-
-
-
 </main>

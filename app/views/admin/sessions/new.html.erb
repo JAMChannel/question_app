@@ -2,8 +2,6 @@
   <h2>管理者ログイン</h2><br>
   <div class="user-sain">
     <%= form_with scope: :session, url:admin_login_path, local: true do |f| %>
-
-
       <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: "form-field"%>

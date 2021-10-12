@@ -5,8 +5,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,11 +12,10 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Container wrapper -->
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <h3><%= link_to "question-app", root_path %></h3>
-            <% if logged_in? %>
+            <% if logged_in? && current_user.admin == true %>
               <%= link_to "管理者ログアウト", logout_path, method: :delete , class: "top-page"%>
             <% else %>
               <span><%= link_to "管理者ログイン", admin_login_path , class: "top-page"%></span>
@@ -29,30 +26,18 @@
             <%= link_to "質問投稿", new_question_path %>
           </div>
           <div class="login-content">
-            <% if logged_in? %>
+            <% if logged_in? && current_user.admin == false %>
               <%= link_to "ログアウト", logout_path, method: :delete %>
+              <%= image_tag current_user.image,class: "rounded-circle" if current_user.image.attached? %>
             <% else %>
               <%= link_to "ログイン", login_path %>
               <%= link_to "新規登録", new_user_path %>
             <% end %>
           </div>
-
-  
-
-              <img
-                src="https://mdbootstrap.com/img/new/avatars/2.jpg"
-                class="rounded-circle"
-                height="25"
-                alt=""
-                loading="lazy"
-              />
-            </a>
-            </ul>
           </div>
         </div>
       </nav>
     </header>
     <%= yield %>
-    
   </body>
 </html>

@@ -1,7 +1,7 @@
 nav{
   height: 80px;
   .login-content{
-    margin-right: 15px;
+    margin: 0 15px;
   }
 }
 
@@ -60,6 +60,9 @@ main{
     }
     &-text{
       padding: 25px 0 0 30px;
+      p{
+        font-size: 25px;
+      }
       &-heading{
         padding-bottom: 15px;
       }

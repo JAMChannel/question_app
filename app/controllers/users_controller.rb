@@ -7,13 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # byebug
       session[:user_id] = @user.id
-      # flash[:notice] = "ユーザー登録が完了しました"
       redirect_to root_path
     else
-      # @user = User.new
-      # flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render new
     end
   end

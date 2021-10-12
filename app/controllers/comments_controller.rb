@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    comment = Comment.create(comment_params)
-    redirect_to question_path(comment.question_id)
+    @comment = Comment.create(comment_params)
+    @user = User.where.not(id: current_user.id)
+    CommentMailer.comment_email(@comment,@user).deliver_now
+    redirect_to question_path(@comment.question_id)
   end
-
 
   private
 

@@ -1,13 +1,7 @@
 class SessionsController < ApplicationController
   def new
-    # binding.irb
-    # @user = User.new
-  end
 
-  # def create
-  #   # binding.irb
-  #   render 'new'
-  # end
+  end
 
 
   def create

@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
 
-  # get 'questions/index'
-  # get 'questions/new'
-  # get 'questions/show'
-  # get 'sessions/new'
-  # get 'users/new'
-  # get 'users/index'
-
   get '/questions/unsolved', to: 'questions#unsolved'
   get '/questions/solved', to: 'questions#solved'
   resources :users, only: [:new ,:index, :create]
@@ -19,11 +12,6 @@ Rails.application.routes.draw do
   resources :questions do
     resources :comments, only: :create
   end
-
-
-
-
-
 
   namespace :admin do
     resources :questions, only: [:index,:destroy]
