@@ -1,0 +1,31 @@
+<div class="top-content">
+  <div class="sideber">
+    <ul class="list-display">
+      <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+      <li><%= link_to "質問一覧", admin_questions_path %></li>
+    </ul>
+  </div>
+  <div class="mainber">
+    <div class="main-each">
+
+        <% @users.each do |user| %>
+          <div class="user-box">
+            <div class="user-box-item">
+              <div class="user-box-item-flex">
+                <%= image_tag user.image if user.image.attached? %>
+                <section class="user-box-item-text">
+                  <h3 class="user-box-item-text-heading">
+                      <%= user.nickname%>
+                  </h3>
+                </section>
+              </div>
+              <span class="btn btn-outline-secondary" id="erasure"><%= link_to "削除" ,admin_user_path(user.id), method: :delete, data: {confirm: "削除しますか？"} %></span>
+            </div>
+          </div>
+        <% end %>
+
+
+    </div>
+ 
+  </div>
+</div>

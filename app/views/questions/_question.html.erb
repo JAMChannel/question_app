@@ -1,0 +1,19 @@
+  <% questions.each do |question| %>
+    <div class="user-box">
+      <div class="user-box-item">
+        <div class="user-box-item-flex">
+          <%= image_tag question.user.image if question.user.image.attached? %>
+          <section class="user-box-item-text">
+            <h3 class="user-box-item-text-heading">
+              <%= link_to question_path(question) do %>
+                <%= question.title%>
+              <% end %>
+            </h3>
+            <p class="user-date"><%= question.user.nickname %></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate(questions) %>
+ 

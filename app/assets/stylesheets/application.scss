@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #6c6b6b;
+  a{
+    text-decoration: none;
+  }
+}
+@import "bootstrap";
+@import "questions";
+@import "users";
+@import "admin/questions";

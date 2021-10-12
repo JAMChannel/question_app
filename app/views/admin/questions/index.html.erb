@@ -1,0 +1,45 @@
+<div class="top-content">
+  <div class="sideber">
+    <ul class="list-display">
+      <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+      <li><%= link_to "質問一覧", admin_questions_path %></li>
+    </ul>
+  </div>
+  <div class="mainber">
+    <div class="main-each">
+
+      <div class="post-form">
+        <form class="form-inline">
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">検索</button>
+        </form>
+      </div>
+
+      <% @questions.each do |question| %>
+        <div class="user-box">
+          <div class="user-box-item">
+            <div class="user-box-item-flex">
+              <%= image_tag question.user.image if question.user.image.attached? %>
+              <section class="user-box-item-text">
+                <h3 class="user-box-item-text-heading">
+                  <%= link_to question_path(question) do %>
+                    <%= question.title%>
+                  <% end %>
+                </h3>
+                <p class="user-date"><%= question.user.nickname %></p>
+              </section>
+            </div>
+            <span class="btn btn-outline-secondary" id="erasure"><%= link_to "削除" ,admin_question_path(question.id), method: :delete, data: {confirm: "削除しますか？"} %></span>
+          </div>
+        </div>
+      <% end %>
+      <%= paginate(@questions) %>
+    </div>
+ 
+  </div>
+</div>
+
+
