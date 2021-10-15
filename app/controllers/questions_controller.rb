@@ -17,10 +17,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @user = User.where.not(id: current_user.id)
-    if @question.valid?
-      @question.save
-      CommentMailer.question_email(@question, @user).deliver_now
+    @users = User.where.not(id: current_user.id)
+    if @question.save!
+      CommentMailer.question_email(@question, @users).deliver_now
       redirect_to root_path
     else
       render 'new'
@@ -38,12 +37,15 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update(question_params)
+    if @question.update(question_params)
     redirect_to question_path(@question)
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @question.destroy
+    @question.destroy!
     redirect_to root_path
   end
 
@@ -71,9 +73,7 @@ class QuestionsController < ApplicationController
   end
 
   def move_to_index
-    unless logged_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless logged_in?
   end
 
 end

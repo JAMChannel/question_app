@@ -5,8 +5,6 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :comments
 
-  # validate :nickname, presence
-  # validate :email, uniqueness: true
 
 end
 

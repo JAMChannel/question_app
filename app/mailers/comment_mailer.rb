@@ -1,9 +1,9 @@
 class CommentMailer < ApplicationMailer
 
-  def question_email(question, user)
+  def question_email(question, users)
     @question = question
-    @user = user
-    mail_to = @user.pluck(:email)
+    @users = users
+    mail_to = @users.pluck(:email)
     mail(
       subject: '質問者にて投稿がございます',
       to: mail_to,
@@ -11,10 +11,10 @@ class CommentMailer < ApplicationMailer
     )
   end
 
-  def comment_email(comment,user)
+  def comment_email(comment,users)
     @comment = comment
-    @user = user
-    mail_to = @user.pluck(:email)
+    @users = users
+    mail_to = @users.pluck(:email)
 
     mail(
       subject: '回答者から返答がございます',
