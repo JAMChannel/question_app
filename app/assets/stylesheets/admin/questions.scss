@@ -1,0 +1,29 @@
+.top-content{
+  display: flex;
+
+  .sideber{
+    width: 300px;
+    float: left;
+    border-right: 1px solid;
+    height: calc(100vw - 80px);
+    // background-color: red;
+    .list-display{
+      text-align: center;
+      margin: 50px 0px;
+      li{
+        margin-bottom: 10px;
+        border-bottom: 1px solid;
+        padding-bottom: 10px;
+        font-size: 20px;
+      }
+    }
+  }
+  .mainber{
+    float: right;
+    width: calc(100vw - 300px);
+    .main-each{
+      margin: 0 100px;
+      padding: 70px 0;
+    }
+  }
+}

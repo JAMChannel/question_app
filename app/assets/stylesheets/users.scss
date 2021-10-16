@@ -1,0 +1,26 @@
+h2{
+  text-align: center;
+}
+
+.user-sain{
+  display: flex;
+  justify-content: center;
+  .form-field{
+    width: 100%;
+    height: 30px;
+  }
+
+  .sub-btn{
+    text-align: center;
+  }
+}
+#erasure{
+  height: 40px;
+  // margin-left: 290px;
+}
+
+
+.rounded-circle{
+  height: 25px;
+  width: 25px;
+}

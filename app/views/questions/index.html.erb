@@ -1,0 +1,15 @@
+<main>
+  <%= render "tabs" %>
+  <div class="post-form">
+    <%= search_form_for @q, url: root_path ,class: "form-group",remote: true do |f| %>
+      <%= f.search_field :title_cont ,placeholder: "　タイトルを検索"%>
+      <%= f.submit '検索', class: "btn btn-primary mb-2" %>
+    <% end %> 
+  </div>
+  <br>
+  <div class="display-area">
+    <%= render "question" , questions:@questions%> 
+  </div>
+</main>
+
+

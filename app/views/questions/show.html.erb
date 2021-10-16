@@ -1,0 +1,50 @@
+<main>
+  <div class="user-box">
+    <div class="user-box-item">
+      <div class="user-box-item-flex">
+        <%= image_tag @question.user.image if @question.user.image.attached? %>
+        <section class="user-box-item-text">
+          <p><%= @question.title%></p>
+        </section>
+      </div>
+      <div class="user-box-item-text-heading-lite-click">
+        <span class="btn btn-outline-primary"><%= link_to "編集" ,edit_question_path(@question.id) %></span>
+        <span class="btn btn-outline-secondary" ><%= link_to "削除" ,question_path(@question.id), method: :delete, data: {confirm: "削除しますか？"} %></span>
+      </div>
+    </div>
+      <div class="user-date"><h4><%= @question.content %></h4></div>
+  </div>
+
+  <div class="comment-form">
+    <% if logged_in? %>
+      <%= form_with(model: [@question, @comment], local: true) do |f| %>
+        <%= f.text_area :text, placeholder: "コメントする", rows: "2" ,class: "form-content" %><br>
+        <% if @question.solved %>
+           <%= link_to '解決済み', question_path(@question.id, question: {solved: false}), method: :put %>
+        <% else %>
+          <%= f.submit "回答する", class: "btn btn-primary" %>
+          <%= link_to '質問を解決したい場合はクリック', question_path(@question.id, question: {solved: true}), method: :put %>
+        <% end %>
+      <% end %>
+      <% else %>
+      <strong><p>※※※ 投稿には新規登録/ログインが必要です ※※※</p></strong>
+    <% end %>
+  </div>
+
+  <% @comments.each do |comment| %>
+  <%# binding.irb %>
+    <div class="user-box">
+      <div class="user-box-item">
+        <div class="user-box-item-flex">
+          <%= image_tag comment.user.image if comment.user.image.attached? %>
+          <section class="user-box-item-text">
+            <h4 class="user-box-item-text-heading">
+              <%= comment.text%>
+            </h4>
+            <p class="user-date"><%= comment.user.nickname %></p>
+          </section>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</main>

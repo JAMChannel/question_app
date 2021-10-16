@@ -1,0 +1,9 @@
+<%= form_with model:question, local:true do |f| %>
+  <div class="post-content">
+    <%= f.text_field :title , placeholder: " タイトル" ,class: "title-form" %>
+  </div><br>
+  <div class="post-content">
+    <%= f.text_area :content, placeholder: " 質問内容", rows: "10" ,class: "text-form"%>
+  </div>
+  <%= f.submit "投稿",class: "btn btn-primary" %>
+<% end %>
