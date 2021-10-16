@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       # binding.pry
       redirect_to root_path
     else
-      render new
+      render new_user_path
     end
   end
 
